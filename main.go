@@ -33,7 +33,7 @@ func main() {
 	}
 	app.Name = "cloud-scan"
 	app.HelpName = app.Name
-	app.Version = "v1.0"
+	app.Version = "v0.1.0"
 	app.Usage = "A CLI tool to scan your cloud resources and show security issues"
 	
 	err := app.Run(os.Args)
