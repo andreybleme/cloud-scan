@@ -49,7 +49,7 @@ func isBucketSecure(svc *s3.S3, bucketName string) bool {
 	bucketInput := &s3.GetPublicAccessBlockInput{Bucket: &bucketName}
 	publicBlock, _ := svc.GetPublicAccessBlock(bucketInput)
 
-	if (publicBlock.PublicAccessBlockConfiguration == nil) {
+	if publicBlock.PublicAccessBlockConfiguration == nil {
 		return false
 	}
 
