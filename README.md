@@ -24,6 +24,12 @@ Simply running `cloud-scan s3` will start the process of scanning your S3 bucket
 
 ![Cloud Scan](https://github.com/andreybleme/cloud-scan/blob/master/cloud-scan.gif)
 
+## Running Tests
+
+```shell
+go test -v ./...
+```
+
 ### Credentials
 
 This CLI relies on the default AWS credentials file. This file should be stored at `~/.aws/credentials` in Unix-based systems and in `$HOME/.aws/credentials`.
