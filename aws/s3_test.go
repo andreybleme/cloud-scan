@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
-    "github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
@@ -15,8 +15,8 @@ const publicBucketName = "apple-public"
 
 func TestCheckBuckets(t *testing.T) {
 	session, _ := session.NewSession(&aws.Config{
-        Region: aws.String(defaultRegion)},
-    )
+		Region: aws.String(defaultRegion)},
+	)
 	svc := s3.New(session)
 
 	res := isBucketSecure(svc, secureBucketName)

@@ -3,17 +3,17 @@ package aws
 import (
 	"fmt"
 
-	"github.com/fatih/color"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/fatih/color"
 )
 
 func CheckBuckets(region string) {
-    session, err := session.NewSession(&aws.Config{
-        Region: aws.String(region)},
-    )
+	session, err := session.NewSession(&aws.Config{
+		Region: aws.String(region)},
+	)
 
 	svc := s3.New(session)
 	input := &s3.ListBucketsInput{}
