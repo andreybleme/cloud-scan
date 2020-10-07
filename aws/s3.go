@@ -10,7 +10,7 @@ import (
 	"github.com/fatih/color"
 )
 
-func CheckBuckets(region string) {
+func CheckBuckets(region string, ignoredBucket string) {
 	session, err := session.NewSession(&aws.Config{
 		Region: aws.String(region)},
 	)
@@ -32,16 +32,18 @@ func CheckBuckets(region string) {
 	}
 
 	for _, bucket := range result.Buckets {
-		status := "public"
-		c := color.New(color.FgRed)
+		if ignoredBucket != aws.StringValue(bucket.Name) {
+			status := "public"
+			c := color.New(color.FgRed)
 
-		if isBucketSecure(svc, aws.StringValue(bucket.Name)) {
-			c = color.New(color.FgGreen)
-			status = "secure"
+			if isBucketSecure(svc, aws.StringValue(bucket.Name)) {
+				c = color.New(color.FgGreen)
+				status = "secure"
+			}
+			c.Print(status)
+			fmt.Print(" ", aws.StringValue(bucket.Name))
+			fmt.Println()
 		}
-		c.Print(status)
-		fmt.Print(" ", aws.StringValue(bucket.Name))
-		fmt.Println()
 	}
 }
 
