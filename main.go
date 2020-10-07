@@ -17,7 +17,8 @@ func main() {
 				Usage:   "Scan your AWS S3 buckets",
 				Action: func(c *cli.Context) error {
 					region := c.String("region")
-					aws.CheckBuckets(region)
+					ignoredBucket := c.String("ignore")
+					aws.CheckBuckets(region, ignoredBucket)
 					return nil
 				},
 				Flags: []cli.Flag{
@@ -26,6 +27,12 @@ func main() {
 						Value:   "us-east-1",
 						Aliases: []string{"l"},
 						Usage:   "availability region",
+					},
+					&cli.StringFlag{
+						Name:    "ignore",
+						Value:   "my-bucket",
+						Aliases: []string{"i"},
+						Usage:   "bucket name to be ignored",
 					},
 				},
 			},
